@@ -25,8 +25,11 @@ fun main() {
 private fun Application.configureCSRF() {
     routing {
         route("/csrf") {
+
             install(CSRF) {
-//                checkHeader("X-CSRF") { it == "abc" }
+                allowOrigin("https://localhost:8080")
+
+                originMatchesHost()
 
                 checkHeader("X-CSRF") { csrfHeader ->
                     request.headers[HttpHeaders.Origin]?.let { origin ->

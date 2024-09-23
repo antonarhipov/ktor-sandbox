@@ -42,6 +42,16 @@ dependencies {
     implementation("io.ktor:ktor-server-compression-jvm")
     implementation("io.ktor:ktor-server-call-logging-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
+
+    implementation("io.ktor:ktor-client-cio-jvm")
+
+//    implementation("io.ktor:ktor-client-core-jvm")
+//    implementation("io.ktor:ktor-client-auth-jvm")
+//    implementation("io.ktor:ktor-client-logging-jvm")
+//    implementation("io.ktor:ktor-client-content-negotiation-jvm")
+//    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
+//    implementation("io.ktor:ktor-client-websockets-jvm")
+    
     implementation("ch.qos.logback:logback-classic:$logback_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
