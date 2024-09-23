@@ -1,6 +1,5 @@
 package com.example
 
-
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -27,12 +26,19 @@ private fun Application.configureCSRF() {
     routing {
         route("/csrf") {
             install(CSRF) {
-                checkHeader("X-CSRF") { it == "abc" }
+//                checkHeader("X-CSRF") { it == "abc" }
+
+                checkHeader("X-CSRF") { csrfHeader ->
+                    request.headers[HttpHeaders.Origin]?.let { origin ->
+                        csrfHeader == origin.hashCode().toString(32) //1ndrgg9
+                    } == true
+                }
+
                 onFailure {
                     respondText("Access denied!", status = HttpStatusCode.Forbidden)
                 }
             }
-            get {
+            post {
                 call.respondText("CSRF check passed!")
             }
         }
