@@ -1,16 +1,19 @@
 package com.example
 
+import com.example.persistence.UserRepositoryImpl
 import com.example.plugins.configureCSRF
+import com.example.plugins.configureSSE
 import com.example.plugins.configureSerialization
 import com.example.plugins.configureStaticZip
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import io.ktor.server.routing.*
-import io.ktor.server.sse.*
-import io.ktor.sse.*
-import kotlinx.coroutines.delay
+import kotlinx.serialization.Serializable
 
+val userRepository = UserRepositoryImpl()
+
+@Serializable
+data class User(val id: String, val name: String, val age: Int)
 
 fun main() {
     embeddedServer(Netty, port = 8080) {
@@ -21,20 +24,22 @@ fun main() {
     }.start(wait = true)
 }
 
+// basic CRUD for the user data class
+fun Application.userRoutes() {
 
 
-
-private fun Application.configureSSE() {
-    install(SSE)
-    routing {
-        sse("/sse") {
-            repeat(3) {
-                val name = call.parameters["name"] ?: "World"
-                send(ServerSentEvent(data = "Hello, $name! $it"))
-                delay(1000)
-            }
-            close()
-        }
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
