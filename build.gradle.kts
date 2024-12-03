@@ -55,6 +55,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
+    implementation("io.ktor:ktor-server-websockets-jvm:3.0.0-rc-2")
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
